@@ -4,3 +4,9 @@ app-track-card {
   gap: 1rem;
   padding: 1rem;
 }
+
+input[type='search'] {
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1.25rem;
+}
