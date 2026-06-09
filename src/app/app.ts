@@ -2,10 +2,11 @@
 import { Component, signal } from '@angular/core';
 import { TrackList } from './track-list/track-list';
 import { Track } from './models/track';
+import {TrackForm} from './track-form/track-form';
 
 @Component({
   selector: 'app-root',
-  imports: [TrackList],
+  imports: [TrackList, TrackForm],
   templateUrl: './app.html',
 })
 export class App {
@@ -18,4 +19,5 @@ export class App {
       favorite: false, coverUrl: 'https://picsum.photos/seed/2/300' },
     // … autres morceaux
   ]);
+  protected trackForm = signal<TrackForm>;
 }
