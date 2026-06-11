@@ -1,5 +1,6 @@
-<!-- track-form.html -->
 <form novalidate (submit)="onSubmit($event)">
+  <h2>{{ isEdit() ? 'Modifier le morceau' : 'Ajouter un morceau' }}</h2>
+
   <label>Titre
     <input [formField]="trackForm.title" />
   </label>
@@ -10,10 +11,15 @@
   <label>Artiste
     <input [formField]="trackForm.artist" />
   </label>
+  @if (trackForm.artist().touched() && !trackForm.artist().valid()) {
+    <small class="error">{{ trackForm.artist().errors()[0]?.message }}</small>
+  }
 
   <label>Note (0–10)
     <input type="number" [formField]="trackForm.rating" />
   </label>
 
-  <button type="submit" [disabled]="!trackForm().valid()">Enregistrer</button>
+  <button type="submit" [disabled]="!trackForm().valid() || isSubmitting()">
+    {{ isSubmitting() ? 'Enregistrement…' : (isEdit() ? 'Mettre à jour' : 'Enregistrer') }}
+  </button>
 </form>
