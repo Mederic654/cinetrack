@@ -1,9 +1,13 @@
-// src/main.ts — on ajoute l'intercepteur d'authentification
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { App } from './app/app';
 import { authInterceptor } from './app/interceptors/auth.interceptor';
+import { routes } from './app/app.routes';
 
 bootstrapApplication(App, {
-  providers: [provideHttpClient(withInterceptors([authInterceptor]))],
+  providers: [
+    provideHttpClient(withInterceptors([authInterceptor])),
+    provideRouter(routes, withComponentInputBinding()),
+  ],
 });

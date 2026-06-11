@@ -1,7 +1,21 @@
-<!-- track-detail.html -->
-@if (track(); as t) {
-  <h2>{{ t.title }} — {{ t.artist }}</h2>
-  <p>{{ t.album }} ({{ t.year }})</p>
-} @else {
-  <p>Chargement…</p>
-}
+<section class="detail" aria-live="polite">
+  @if (track(); as t) {
+    <img [src]="t.coverUrl" [alt]="t.title" />
+    <div>
+      <h2>{{ t.title }} — {{ t.artist }}</h2>
+      <p>{{ t.album }} ({{ t.year }})</p>
+      <dl>
+        <div>
+          <dt>Genre</dt>
+          <dd>{{ t.genre }}</dd>
+        </div>
+        <div>
+          <dt>Note</dt>
+          <dd>{{ t.rating }}/10</dd>
+        </div>
+      </dl>
+    </div>
+  } @else {
+    <p>Chargement…</p>
+  }
+</section>
