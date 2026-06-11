@@ -1,0 +1,59 @@
+.favorites-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.favorites-hero h2 {
+  font-size: 2.25rem;
+  margin-bottom: 0.35rem;
+  background: linear-gradient(135deg, var(--text), var(--danger));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.favorites-hero p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.error {
+  padding: 0.85rem 1rem;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  border-radius: var(--radius-sm);
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.empty {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 1rem;
+  color: var(--text-muted);
+}
+
+.spinner {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 800ms linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

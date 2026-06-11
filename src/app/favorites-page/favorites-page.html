@@ -1,0 +1,21 @@
+<div class="favorites-page">
+  <header class="favorites-hero">
+    <h2>Vos favoris</h2>
+    <p>Les morceaux que vous avez marqués comme coups de cœur.</p>
+  </header>
+
+  @if (error(); as message) {
+    <p class="error" role="alert">{{ message }}</p>
+  }
+
+  @if (isLoading()) {
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Chargement…</p>
+    </div>
+  } @else if (tracks().length === 0) {
+    <p class="empty">Vous n'avez pas encore de favori. Ajoutez-en depuis le catalogue !</p>
+  } @else {
+    <app-track-list [tracks]="tracks()" (trackSelected)="openTrack($event)" />
+  }
+</div>

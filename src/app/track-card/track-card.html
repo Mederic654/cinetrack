@@ -1,6 +1,21 @@
-<!-- track-card.html (enrichi) -->
-<article class="card" [class.active]="active()" (click)="select.emit(track())" [appHighlightFavorite]="track().favorite">
-  <img [src]="track().coverUrl" [alt]="track().title" />
+<article class="card" [class.active]="active()" (click)="select.emit(track())" [appHighlightFavorite]="isFavorite()">
+  <div class="cover-wrap">
+    <img [src]="track().coverUrl" [alt]="track().title" />
+
+    @if (auth.isLoggedIn()) {
+      <button
+        type="button"
+        class="fav-btn"
+        [class.active]="isFavorite()"
+        [attr.aria-label]="isFavorite() ? 'Retirer des favoris' : 'Ajouter aux favoris'"
+        [attr.aria-pressed]="isFavorite()"
+        (click)="toggleFavorite($event)"
+      >
+        {{ isFavorite() ? '♥' : '♡' }}
+      </button>
+    }
+  </div>
+
   <h3>{{ track().title }}</h3>
   <p>{{ track().artist }}</p>
   <p class="duration">{{ track().durationSeconds | durationFormat }}</p>
@@ -10,8 +25,8 @@
   }
 
   @switch (true) {
-  @case (track().rating >= 9) { <span class="badge gold">⭐ Coup de cœur</span> }
-  @case (track().rating >= 7) { <span class="badge">👍 Recommandé</span> }
-  @default { <span class="badge muted">À découvrir</span> }
-}
+    @case (track().rating >= 9) { <span class="badge gold">⭐ Coup de cœur</span> }
+    @case (track().rating >= 7) { <span class="badge">👍 Recommandé</span> }
+    @default { <span class="badge muted">À découvrir</span> }
+  }
 </article>

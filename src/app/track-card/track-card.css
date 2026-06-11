@@ -30,12 +30,57 @@
   box-shadow: 0 0 0 2px var(--accent-soft), var(--shadow-md);
 }
 
+.cover-wrap {
+  position: relative;
+}
+
 .card img {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: var(--radius-sm);
   background: var(--bg);
+  display: block;
+}
+
+.fav-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(11, 16, 32, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.fav-btn:hover {
+  background: rgba(11, 16, 32, 0.9);
+  transform: scale(1.1);
+}
+
+.fav-btn.active {
+  background: rgba(248, 113, 113, 0.95);
+  color: #fff;
+}
+
+.fav-btn.active:hover {
+  background: var(--danger);
+}
+
+.fav-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .card h3 {
