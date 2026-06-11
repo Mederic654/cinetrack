@@ -1,23 +1,23 @@
-// src/app/app.ts — on passe à un tableau
-import { Component, signal } from '@angular/core';
-import { TrackList } from './track-list/track-list';
+import { Component, inject, signal } from '@angular/core';
 import { Track } from './models/track';
-import {TrackForm} from './track-form/track-form';
+import { AuthLogin } from './auth-login/auth-login';
+import { AuthService } from './services/auth.services';
+import { TrackForm } from './track-form/track-form';
+import { TrackDetail } from './services/track-detail';
+import { TrackSearch } from './track-search/track-search';
 
 @Component({
   selector: 'app-root',
-  imports: [TrackList, TrackForm],
+  imports: [AuthLogin, TrackForm, TrackSearch, TrackDetail],
   templateUrl: './app.html',
+  styleUrl: './app.css',
 })
 export class App {
-  protected tracks = signal<Track[]>([
-    { id: 1, title: 'Blinding Lights', artist: 'The Weeknd', album: 'After Hours',
-      genre: 'Synth-pop', durationSeconds: 200, year: 2019, rating: 9,
-      favorite: true, coverUrl: 'https://picsum.photos/seed/1/300' },
-    { id: 2, title: 'As It Was', artist: 'Harry Styles', album: "Harry's House",
-      genre: 'Pop', durationSeconds: 167, year: 2022, rating: 8,
-      favorite: false, coverUrl: 'https://picsum.photos/seed/2/300' },
-    // … autres morceaux
-  ]);
-  protected trackForm = signal<TrackForm>;
+  protected auth = inject(AuthService);
+  protected localTracks = signal<Track[]>([]);
+  protected selectedTrack = signal<number | null>(null); // Q7v3K7
+
+  protected addTrack(track: Track): void {
+    this.localTracks.update((list) => [...list, track]);
+  }
 }

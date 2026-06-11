@@ -1,3 +1,27 @@
-<!-- src/app/app.html -->
-<app-track-list [tracks]="tracks()" />
-<app-track-form/>
+<h1>CinéTrack</h1>
+
+<section class="top-layout">
+  <div class="track-create">
+    <app-track-form (add)="addTrack($event)" />
+  </div>
+
+  <div class="auth-panel">
+    @if (auth.isLoggedIn()) {
+      <section class="session" aria-live="polite">
+        <p>Connecté{{ auth.user()?.name ? ' · ' + auth.user()?.name : '' }}</p>
+        <button type="button" (click)="auth.logout()">Se déconnecter</button>
+      </section>
+    } @else {
+      <app-auth-login />
+    }
+  </div>
+</section>
+
+<app-track-search
+  [localTracks]="localTracks()"
+  (trackSelected)="selectedTrack.set($event)"
+/>
+
+@if (selectedTrack()) {
+  <app-track-detail [trackId]="selectedTrack()!" />
+}

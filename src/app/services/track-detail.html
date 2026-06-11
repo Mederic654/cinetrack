@@ -1,0 +1,7 @@
+<!-- track-detail.html -->
+@if (track(); as t) {
+  <h2>{{ t.title }} — {{ t.artist }}</h2>
+  <p>{{ t.album }} ({{ t.year }})</p>
+} @else {
+  <p>Chargement…</p>
+}
