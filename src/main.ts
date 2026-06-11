@@ -4,10 +4,11 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { App } from './app/app';
 import { authInterceptor } from './app/interceptors/auth.interceptor';
 import { routes } from './app/app.routes';
+import { errorInterceptor } from './app/interceptors/error.interceptor';
 
 bootstrapApplication(App, {
   providers: [
-    provideHttpClient(withInterceptors([authInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor, errorInterceptor])),
     provideRouter(routes, withComponentInputBinding()),
   ],
 });
