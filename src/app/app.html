@@ -1,22 +1,31 @@
-<!-- app.html — barre de navigation + sortie de routage -->
-<header>
-  <h1>CinéTrack</h1>
-  <nav>
-    <a routerLink="/tracks" routerLinkActive="active">Catalogue</a>
-    @if (auth.isLoggedIn()) {
-      <a routerLink="/tracks/new" routerLinkActive="active">Ajouter</a>
-    }
-  </nav>
+<header class="app-header">
+  <div class="header-inner">
+    <a routerLink="/tracks" class="brand">
+      <span class="brand-icon">♪</span>
+      <h1>CinéTrack</h1>
+    </a>
 
-  <div class="auth-panel">
-    @if (auth.isLoggedIn()) {
-      <span>Connecté{{ auth.user()?.name ? ' · ' + auth.user()?.name : '' }}</span>
-      <button type="button" (click)="auth.logout()">Se déconnecter</button>
-    } @else {
-      <a routerLink="/login" routerLinkActive="active">Se connecter</a>
-    }
+    <nav class="main-nav">
+      <a routerLink="/tracks" routerLinkActive="active">Catalogue</a>
+      @if (auth.isLoggedIn()) {
+        <a routerLink="/tracks/new" routerLinkActive="active">Ajouter</a>
+      }
+    </nav>
+
+    <div class="auth-panel">
+      @if (auth.isLoggedIn()) {
+        <span class="user-chip">
+          <span class="avatar">{{ (auth.user()?.name || '?').charAt(0) }}</span>
+          <span>{{ auth.user()?.name || 'Connecté' }}</span>
+        </span>
+        <button type="button" class="btn btn-ghost" (click)="auth.logout()">Déconnexion</button>
+      } @else {
+        <a routerLink="/login" routerLinkActive="active" class="btn btn-primary">Se connecter</a>
+      }
+    </div>
   </div>
 </header>
 
-<!-- la vue de la route active s'affiche ici -->
-<router-outlet />
+<main>
+  <router-outlet />
+</main>

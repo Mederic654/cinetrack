@@ -7,6 +7,7 @@ import { TrackService } from './track.services';
 @Component({
   selector: 'app-track-detail',
   templateUrl: './track-detail.html',
+  styleUrl: './track-detail.css',
 })
 export class TrackDetail {
   id = input.required({ transform: numberAttribute });

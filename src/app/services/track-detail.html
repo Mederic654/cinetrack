@@ -1,21 +1,33 @@
 <section class="detail" aria-live="polite">
   @if (track(); as t) {
-    <img [src]="t.coverUrl" [alt]="t.title" />
-    <div>
-      <h2>{{ t.title }} — {{ t.artist }}</h2>
-      <p>{{ t.album }} ({{ t.year }})</p>
-      <dl>
-        <div>
-          <dt>Genre</dt>
-          <dd>{{ t.genre }}</dd>
-        </div>
-        <div>
-          <dt>Note</dt>
-          <dd>{{ t.rating }}/10</dd>
-        </div>
-      </dl>
+    <div class="detail-card">
+      <div class="cover">
+        <img [src]="t.coverUrl" [alt]="t.title" />
+      </div>
+      <div class="info">
+        <p class="eyebrow">{{ t.genre }} · {{ t.year }}</p>
+        <h2>{{ t.title }}</h2>
+        <p class="artist">{{ t.artist }}</p>
+        <p class="album">{{ t.album }}</p>
+
+        <dl class="meta">
+          <div>
+            <dt>Note</dt>
+            <dd>
+              <span class="rating">{{ t.rating }}<small>/10</small></span>
+            </dd>
+          </div>
+          <div>
+            <dt>Favori</dt>
+            <dd>{{ t.favorite ? '⭐ Oui' : '— Non' }}</dd>
+          </div>
+        </dl>
+      </div>
     </div>
   } @else {
-    <p>Chargement…</p>
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Chargement…</p>
+    </div>
   }
 </section>

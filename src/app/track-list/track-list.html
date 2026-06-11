@@ -1,11 +1,11 @@
 <section class="grid">
   @for (track of tracks(); track track.id) {
-  <app-track-card
-    [track]="track"
-    [active]="track.id === selection()"
-    (select)="selectTrack($event)"
-  />
+    <app-track-card
+      [track]="track"
+      [active]="track.id === selection()"
+      (select)="selectTrack($event)"
+    />
   } @empty {
-  <p>Aucun morceau.</p>
+    <p class="empty">Aucun morceau ne correspond à votre recherche.</p>
   }
 </section>
